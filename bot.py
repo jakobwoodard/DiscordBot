@@ -26,7 +26,7 @@ async def on_message(message):
     if message.author == client.user:
         return
     else:
-        if message.content == 'hello':
-            await message.channel.send(f"Hello, @{message.author}")
+        if message.content.lower() == 'hello':
+            await message.reply(f"Hello, {message.author}")
 client.run(TOKEN)
     
