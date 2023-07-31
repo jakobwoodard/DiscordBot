@@ -11,21 +11,22 @@ GUILD = os.getenv('DISCORD_GUILD')
 ## Permissions of the bot, diff from actual bot permissions
 intents = discord.Intents.default()
 intents.members = True
+intents.messages = True
+intents.message_content = True
 client = discord.Client(intents=intents)
 
 ## Have the bot do something
 @client.event
 ## When the connection is established
 async def on_ready():
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
+    print("Sanctuary Bot is ready...")
 
-    print(
-        f'{client.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
-    
-    print([member.name for member in guild.members])
-
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    else:
+        if message.content == 'hello':
+            await message.channel.send(f"Hello, @{message.author}")
 client.run(TOKEN)
+    
