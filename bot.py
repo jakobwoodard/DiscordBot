@@ -59,7 +59,8 @@ async def on_message(message):
                 await golfmoose(message, command_args)
             if(command_args[0].lower() == 'random') :
                 await randomGuess(message)
-            
+            if(command_args[0].lower() == 'help'):
+                await help(message)
 ### Request for apex tracker. API still needs approval, so using worse api ###
 ### '%apex [arg1] [arg2] [arg3]... ' ###
 ### '%apex map' gives the current and next map ###
@@ -89,7 +90,18 @@ async def apex(command, message):
     # Bot responds
     await message.reply(f"{current_map['map']} has {current_map['time']} remaining.\nThe next map will be {next_map['map']} for {next_map['time']} minutes.\n")
     
-    
+# Help menu
+# Lists all commands
+async def help(message):
+    await message.reply(f"%help - Get a list of all commands." + "\n" + 
+                        "%apex map - Get the current map in rotation" + "\n" + 
+                        "%coinflip - Flip a coin" + "\n" + 
+                        "%golfmoose [region] - Get current golfmoose deals for specified region" + "\n" + 
+                        "%random - Play a guessing game between 0-100")    
+
+
+
+
 # Coinflip using random library
 async def coinflip(message):
     side = random.choice(['Heads', 'Tails'])
