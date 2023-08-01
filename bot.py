@@ -122,10 +122,10 @@ async def randomGuess(message):
         if (guess == randomNum):
             await message.reply(f"Correct!")
             break
-        elif (guess > randomNum):
+        elif (guess > randomNum and remain > 1):
             remain = remain - 1
             await message.reply(f"Try a lower number, " + str(remain) + " guesses left")
-        elif (guess < randomNum):
+        elif (guess < randomNum and remain > 1):
             remain = remain - 1
             await message.reply(f"Try a higher number, "+ str(remain) + " guesses left")
         else:
