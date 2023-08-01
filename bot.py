@@ -1,6 +1,7 @@
 import os
 import random
 import requests
+import asyncio
 
 import discord
 from bs4 import BeautifulSoup
@@ -56,6 +57,8 @@ async def on_message(message):
                 await coinflip(message)
             if (command_args[0].lower() == 'golfmoose'):
                 await golfmoose(message, command_args)
+            if(command_args[0].lower() == 'random') :
+                await randomGuess(message)
             
 ### Request for apex tracker. API still needs approval, so using worse api ###
 ### '%apex [arg1] [arg2] [arg3]... ' ###
@@ -106,5 +109,31 @@ async def golfmoose(message, command):
     )
     print(response.text)
     
+## Guessing random number game
+async def randomGuess(message):
+    await message.reply(f"Guess a number between 0 and 100")
+    randomNum = random.randint(0, 100)
+    remain = 5
+    print(randomNum)
+
+    for i in range(0,5):
+        msg = await client.wait_for('message')
+        guess = int(msg.content)
+        if (guess == randomNum):
+            await message.reply(f"Correct!")
+            break
+        elif (guess > randomNum):
+            remain = remain - 1
+            await message.reply(f"Try a lower number, " + str(remain) + " guesses left")
+        elif (guess < randomNum):
+            remain = remain - 1
+            await message.reply(f"Try a higher number, "+ str(remain) + " guesses left")
+        else:
+            remain = remain - 1
+            await message.reply(f"Please enter a number between 0 and 100, " + str(remain) + " guesses left")
+    else:
+        await message.reply(f"Sorry, the number was " + str(randomNum) + "!")
+
+
 client.run(TOKEN)
     
