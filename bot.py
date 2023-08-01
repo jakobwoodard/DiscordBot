@@ -116,23 +116,29 @@ async def randomGuess(message):
     remain = 5
     print(randomNum)
 
-    for i in range(0,5):
+    i = 0
+    while i != 5:
         msg = await client.wait_for('message')
-        guess = int(msg.content)
+        try:
+            guess = int(msg.content)
+        except ValueError:
+            await msg.reply("Invalid number, try again")
+            continue
         if (guess == randomNum):
-            await message.reply(f"Correct!")
+            await msg.reply(f"Correct!")
             break
         elif (guess > randomNum and remain > 1):
             remain = remain - 1
-            await message.reply(f"Try a lower number, " + str(remain) + " guesses left")
+            await msg.reply(f"Try a lower number, " + str(remain) + " guesses left")
         elif (guess < randomNum and remain > 1):
             remain = remain - 1
-            await message.reply(f"Try a higher number, "+ str(remain) + " guesses left")
+            await msg.reply(f"Try a higher number, "+ str(remain) + " guesses left")
         else:
             remain = remain - 1
-            await message.reply(f"Please enter a number between 0 and 100, " + str(remain) + " guesses left")
+            await msg.reply(f"Please enter a number between 0 and 100, " + str(remain) + " guesses left")
+        i = i + 1
     else:
-        await message.reply(f"Sorry, the number was " + str(randomNum) + "!")
+        await msg.reply(f"Sorry, the number was " + str(randomNum) + "!")
 
 
 client.run(TOKEN)
