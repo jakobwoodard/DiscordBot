@@ -93,11 +93,11 @@ async def apex(command, message):
 # Help menu
 # Lists all commands
 async def help(message):
-    await message.reply(f"%help - Get a list of all commands." + "\n" + 
-                        "%apex map - Get the current map in rotation" + "\n" + 
-                        "%coinflip - Flip a coin" + "\n" + 
-                        "%golfmoose [region] - Get current golfmoose deals for specified region" + "\n" + 
-                        "%random - Play a guessing game between 0-100")    
+    await message.reply(f"`%help` - Get a list of all commands." + "\n" + 
+                        "`%apex map` - Get the current map in rotation" + "\n" + 
+                        "`%coinflip` - Flip a coin" + "\n" + 
+                        "`%golfmoose [region]` - Get current golfmoose deals for specified region" + "\n" + 
+                        "`%random` - Play a guessing game between 0-100")    
 
 
 
