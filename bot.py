@@ -3,6 +3,7 @@ import random
 import requests
 
 import discord
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 ## Saved secret data to other file in directory
@@ -53,6 +54,8 @@ async def on_message(message):
             ## '%coinflip' ##
             if (command_args[0].lower() == 'coinflip'):
                 await coinflip(message)
+            if (command_args[0].lower() == 'golfmoose'):
+                await golfmoose(message, command_args)
             
 ### Request for apex tracker. API still needs approval, so using worse api ###
 ### '%apex [arg1] [arg2] [arg3]... ' ###
@@ -88,6 +91,20 @@ async def apex(command, message):
 async def coinflip(message):
     side = random.choice(['Heads', 'Tails'])
     await message.reply(f"It's {side}!")
+    
+# Checks current golf moose deals based on specified region
+### Practice for web scraping/parsing raw html output ###
+async def golfmoose(message, command):
+    region = command[1].lower()
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+    }
+    ## Gets the entire page's raw html to be parsed ##
+    response= requests.get(
+        url=('https://golfmoose.com/product-category/north-carolina/' + region),
+        headers=headers
+    )
+    print(response.text)
     
 client.run(TOKEN)
     
