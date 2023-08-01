@@ -155,13 +155,13 @@ async def golfmoose(message, command):
         for deal in deals:
             # find deal/prices
             title = deal.find_element(By.CLASS_NAME, "deal-title").text # title
-            desc = deal.find_element(By.CLASS_NAME, "text-muted").text # Deal
+            #desc = deal.find_element(By.CLASS_NAME, "text-muted").text # Deal
             prices = deal.find_elements(By.CSS_SELECTOR, "span[class*='woocommerce-Price-amount amount']")
             prev_price = prices[0].find_element(By.TAG_NAME, "bdi").text
             new_price = prices[1].find_element(By.TAG_NAME, "bdi").text
             deal_dict = {
                 'title': title,
-                'desc': desc,
+                #'desc': desc,
                 'prev_price': prev_price,
                 'new_price': new_price
             }
