@@ -111,7 +111,9 @@ async def help(message):
     await message.reply(f"`%help` - Get a list of all commands." + "\n" +
                         "`%apex map` - Get the current map in rotation" + "\n" +
                         "`%coinflip` - Flip a coin" + "\n" +
-                        "`%golfmoose [region]` - Get current golfmoose deals for specified region. Currently, only NC regions are supported." + "\n" +
+                        "`%golfmoose [state] [region]` - Get current golfmoose deals for specified region." + "\n" +
+                        "`%golfmoose states` for all supported states" + "\n" + 
+                        "`%golfmoose [state] regions` for all supported regions for the given state." + "\n" +
                         "`%random` - Play a guessing game between 0-100")
 
 
@@ -224,14 +226,6 @@ async def webscrape(message, state, region):
     # pass the defined options and service objects to initialize the web driver
     driver = Chrome(options=options, service=chrome_service)
     driver.implicitly_wait(5)
-    
-
-    ##CaliforniaS - central coast = coast - mojave = mojave-1
-    ##Carolinas - greenville(SC) = greenville-south-carolina
-    ##Florida - Northeast = northeast-florida - Southwest = southwest-florida
-    ##Georgia - Augusta = augusta-georgia
-    ##Texas - Austin = austintx
-    ##Wisconsin - Central = central-wisconsin
     
     # Washington special case
     if state.lower() == 'washington':
