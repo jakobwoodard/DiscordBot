@@ -1,11 +1,9 @@
 import os
 import random
 import requests
-import asyncio
 import time
 
 
-import pandas as pd
 from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
@@ -13,7 +11,6 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 import discord
-from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 
@@ -128,6 +125,7 @@ async def coinflip(message):
 
 
 async def golfmoose(message, command):
+    await message.reply("Working...")
     region = command[1].lower()
     # Selenium/Pandas Chrome Web Driver initialization
     # start by defining the options
