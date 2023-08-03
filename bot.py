@@ -155,10 +155,6 @@ async def golfmoose(message, command_args):
     elif len(command_args) == 2 and command_args[1].lower() == 'washington':
         await webscrape(message, command_args[1], None)
         await working_msg.delete()
-
-    elif len(command_args) == 2 and (command_args[1].lower() != 'states' and command_args.lower() != 'washington'):
-        # 1 command after 'golfmoose', 
-        await message.reply("Invalid command syntax")
         
     elif len(command_args) == 3 and command_args[1].lower() in (state.lower() for state in states) and command_args[2].lower() == 'regions':
         # list all available regions in the specified state
@@ -177,6 +173,7 @@ async def golfmoose(message, command_args):
         
     else:
         await message.reply("Invalid command syntax. Available commands: \n '%golfmoose [state] [region]' \n '%golfmoose states' \n '%golfmoose [state] regions'")
+        await working_msg.delete()
         return
 
     
