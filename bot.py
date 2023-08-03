@@ -72,6 +72,16 @@ async def on_message(message):
                 await help(message)
                 
                 
+### Help menu ###
+### Lists all commands ###
+async def help(message):
+    await message.reply(f"`%help` - Get a list of all commands." + "\n" +
+                        "`%apex map` - Get the current map in rotation" + "\n" +
+                        "`%coinflip` - Flip a coin" + "\n" +
+                        "`%golfmoose [state] [region]` - Get current golfmoose deals for specified region." + "\n" +
+                        "`%golfmoose states` for all supported states" + "\n" + 
+                        "`%golfmoose [state] regions` for all supported regions for the given state." + "\n" +
+                        "`%random` - Play a guessing game between 0-100")
 ### Request for apex tracker. API still needs approval, so using worse api ###
 ### '%apex [arg1] [arg2] [arg3]... ' ###
 ### '%apex map' gives the current and next map ###
@@ -102,19 +112,6 @@ async def apex(command, message):
         'time': resp_json['next']['DurationInMinutes']}
     # Bot responds
     await message.reply(f"{current_map['map']} has {current_map['time']} remaining.\nThe next map will be {next_map['map']} for {next_map['time']} minutes.\n")
-
-# Help menu
-# Lists all commands
-
-
-async def help(message):
-    await message.reply(f"`%help` - Get a list of all commands." + "\n" +
-                        "`%apex map` - Get the current map in rotation" + "\n" +
-                        "`%coinflip` - Flip a coin" + "\n" +
-                        "`%golfmoose [state] [region]` - Get current golfmoose deals for specified region." + "\n" +
-                        "`%golfmoose states` for all supported states" + "\n" + 
-                        "`%golfmoose [state] regions` for all supported regions for the given state." + "\n" +
-                        "`%random` - Play a guessing game between 0-100")
 
 
 # Coinflip using random library
