@@ -176,7 +176,7 @@ async def golfmoose(message, command_args):
         await working_msg.delete()
         
     else:
-        await message.reply("Invalid command syntax. Expected '%golfmoose [state] [region]'")
+        await message.reply("Invalid command syntax. Available commands: \n '%golfmoose [state] [region]' \n '%golfmoose states' \n '%golfmoose [state] regions'")
         return
 
     
