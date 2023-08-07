@@ -1,2 +1,4 @@
 /.env
 uriserver/
+__pycache__
+*.pyc
