@@ -7,6 +7,8 @@ import discord
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+YT_KEY = os.environ.get('YOUTUBE_KEY') # you can hardcode this, too.
+
 
 # Worse Apex API, being used for map pool while waiting for perms
 # https://apexlegendsstatus.com/

@@ -2,7 +2,7 @@ from apexCommands import apex
 from golfmoose import golfmoose
 from helpMsg import help
 from randomGames import randomGuess, coinflip
-# from musicPlayer import music
+from musicPlayer import music
 
 
 from client import client, TOKEN
@@ -42,8 +42,8 @@ async def on_message(message):
                 await golfmoose(message, command_args)
             if (command_args[0].lower() == 'random'):
                 await randomGuess(message)
-            # if (command_args[0].lower() == 'music'):
-            #     await music(message, command_args)
+            if (command_args[0].lower() == 'music'):
+                await music(message, command_args)
             if (command_args[0].lower() == 'help'):
                 await help(message)
 
