@@ -21,15 +21,17 @@ async def apex(command, message):
         # Save the response
     }
     response = requests.get(
-        url=(base + 'maprotation?' + auth),
+        url=('https://lil2-gateway.apexlegendsstatus.com/gateway.php?qt=map'),
         headers=headers
     )
     # Make the response json
     resp_json = response.json()
     # Format the response
-    current_map = {'map': resp_json['current']['map'],
-        'time': resp_json['current']['remainingTimer']}
-    next_map = {'map': resp_json['next']['map'],
-        'time': resp_json['next']['DurationInMinutes']}
+    current_map = {'map': resp_json["rotation"]["battle_royale"]["current"]["map"],
+        'time': resp_json["rotation"]["battle_royale"]["current"]["remainingTimer"]}
+    next_map = {'map': resp_json["rotation"]["battle_royale"]["next"]["map"],
+        'time': resp_json["rotation"]["battle_royale"]["next"]["DurationInMinutes"]}
+    ranked_map = {'map': resp_json["rotation"]["ranked"]["current"]["map"]
+    }
     # Bot responds
-    await message.reply(f"{current_map['map']} has {current_map['time']} remaining.\nThe next map will be {next_map['map']} for {next_map['time']} minutes.\n")
+    await message.reply(f"{current_map['map']} has {current_map['time']} remaining.\nThe next map will be {next_map['map']} for {next_map['time']} minutes.\nThe Ranked map is {ranked_map['map']}")
