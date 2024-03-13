@@ -141,15 +141,16 @@ async def timeout(message, command):
             voice = await channel.connect()
             source = FFmpegPCMAudio("souls.mp3")
             player = voice.play(source)
-            await timeout_helper(4.5, message, command)
+            await timeout_helper(2.5, message, command, player)
         # fail if user's not in a channel
         else:
             await message.channel.send("User is not in a channel")
 
 
 # helper function for timeout, handles role manipulation and timing for audio
-async def timeout_helper(sleep, message, command):
+async def timeout_helper(sleep, message, command, player):
     await asyncio.sleep(sleep)
+    player.disconnect()
     timeout_channel = client.get_channel(timeout_id)
     victim = command[1].lower()
     # search the server for the given display name
