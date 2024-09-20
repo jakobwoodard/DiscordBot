@@ -4,3 +4,6 @@ guessing game. One of the more advanced features is being able to scrape the "Go
 present the user with the available deals in each region of the country. There is also feedback from the 
 bot as to the correct syntax for the user so that if needed, the user can correct any mistakes in inputing
 the command.
+
+While overall the file size is small, the learning experinece of webscraping, custom webhooks, and combining
+multiple python libraries was unique and productive.
